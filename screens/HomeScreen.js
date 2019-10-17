@@ -1,13 +1,17 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
+import { StackNavigator } from 'react-navigation';
+
 import {
   Image,
+  Button,
   Platform,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
+  AppRegistry
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
@@ -31,17 +35,27 @@ export default function HomeScreen() {
 
         <View style={styles.getStartedContainer}>
           <DevelopmentModeNotice />
-
-          <Text style={styles.getStartedText}>Get started by opening</Text>
-
+ <View>
+        <Text>Home Screen</Text>
+        <Button
+          title="Add an Item"
+          onPress={() => this.props.navigation.navigate('SettingsScreen')}
+        />
+        <Button
+          title="List of Items"
+          color="green"
+          onPress={() => this.props.navigation.navigate('List')}
+        />
+      </View>
           <View
             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
             <MonoText>screens/HomeScreen.js</MonoText>
           </View>
 
           <Text style={styles.getStartedText}>
-            Change this text and your app will automatically reload.
+            Change this text and your app will  reload. Test changing.And its working.Yes!!
           </Text>
+		  
         </View>
 
         <View style={styles.helpContainer}>
