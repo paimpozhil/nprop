@@ -37,15 +37,7 @@ export default function HomeScreen() {
           <DevelopmentModeNotice />
  <View>
         <Text>Home Screen</Text>
-        <Button
-          title="Add an Item"
-          onPress={() => this.props.navigation.navigate('SettingsScreen')}
-        />
-        <Button
-          title="List of Items"
-          color="green"
-          onPress={() => this.props.navigation.navigate('List')}
-        />
+       
       </View>
           <View
             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
