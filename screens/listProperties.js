@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { db } from '../src/config';
 import 'firebase/firestore';
 import { Appbar, TextInput, Button  } from 'react-native-paper';
-import Property from './listProperty';
 
 function Item({ title }) {
   return (
@@ -81,79 +80,3 @@ const styles = StyleSheet.create({
     fontSize: 32,
   },
 });
-
-
-/*
-export default class ItemComponent extends Component {
-/*	 static propTypes = {
-    Users: PropTypes.array.isRequired
-  };
-
-	// }
-	async  listProp(){
-		const promises = [];
-		await db.collection("Properties").get().then(function(querySnapshot) {
-			querySnapshot.forEach(function(doc) {
-			// doc.data() is never undefined for query doc snapshots
-			promises.push(doc.id);
-			console.log(doc.id, " => ", doc.data());
-			//propertyName=doc.id || {};
-		//	var propertiesList={};
-			//propertiesList.push(propertyName.toString());
-			
-			//propertyList.push(propertyName);
-			console.log("inside for ",propertyName);
-			});
-		});
-		const snapshots = await Promise.all(promises)
-
-        const results = []
-        snapshots.forEach(snap => {
-            const data = snap.data()
-            data.city = snap.id
-            results.push(data)
-        })
-
-        response.send(results)
-		
-	//	const properties = propertiesList;
-	//	this.setState({properties});
-
-		console.log("console inside function before return",propertyList);
-	//	return <Text>      {propertyList}    </Text>;
-	}
-  render() {
-	  // var propertyList = this.listProp();
-	   
-	   //console.log("console inside render",propertyList);
-	 //  propertyList=propertyList.toString();
-   return (
-     
-       // {this.props.Users.map((item, index) => {
-		   
-          //return (
-		//  <View style={styles.itemsList}>
-     //       <View key={index}>
-	
-              <Text >
-			  Properties List
-			  {this.listProp}</Text>
-       //     </View>
-		//	 </View>
-          //);
-        );
-		}
-}
-
-const styles = StyleSheet.create({
-  itemsList: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-around'
-  },
-  itemtext: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center'
-  }
-}); */
