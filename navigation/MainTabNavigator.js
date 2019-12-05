@@ -4,7 +4,9 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/addProperty';
+import LinksScreen from '../screens/PropertyDetails';
+//import LinksScreen from '../screens/addProperty';
+
 import SettingsScreen from '../screens/listProperties';
 
 const config = Platform.select({

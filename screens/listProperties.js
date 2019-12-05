@@ -1,11 +1,11 @@
 import React,{ useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView , FlatList, List,  ListItem} from 'react-native';
+import { View, Text, StyleSheet, ScrollView , FlatList, List,  ListItem, TouchableHighlight} from 'react-native';
 import PropTypes from 'prop-types';
-
+import {createStackNavigator,CreateBottomTabNavigator} from 'react-navigation';
 import { db } from '../src/config';
 import 'firebase/firestore';
 import { Appbar, TextInput, Button  } from 'react-native-paper';
-
+// import PropertyDetails from 'PropertyDetails';
 function Item({ title }) {
   return (
     <View style={styles.item}>
@@ -37,17 +37,23 @@ function Item({ title }) {
           
         });
       });
-
+      console.log("properties data: ", list);
       setProperties(list);
+
 
       if (loading) {
         setLoading(false);
       }
     });
   }, []);
-
-  return (
-    <>
+  
+	goToNextScreen = (item) => {
+		//this.props.navigation.navigate('PropertyDetails', {
+		//itemId: item,
+		// }); 
+    }
+  return ( 
+    <> 
       <Appbar>
         <Appbar.Content title={'Properties List'} />
       </Appbar>
@@ -56,11 +62,17 @@ function Item({ title }) {
         style={{flex: 1}}
         data={properties}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Item title={item.id} />}
+        renderItem={({ item }) => (
+			
+    	  <TouchableHighlight onPress={() => this.goToNextScreen(item.id)}>
+                     <Text >{item.id}</Text>
+                </TouchableHighlight>
+  )}
       />
       <TextInput label={'New Property'} onChangeText={setProperty} />
       <Button onPress={() => addProperty()}>Add Property</Button>
     </>
+	
   );
 }
 //}
