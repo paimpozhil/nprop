@@ -74,6 +74,7 @@ export default function HomeScreen() {
   alert(`Facebook Login Error: ${message}`);
 }
 };
+
   return (
     <View style={styles.container}>
       <ScrollView
