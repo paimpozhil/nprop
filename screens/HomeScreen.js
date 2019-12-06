@@ -1,6 +1,14 @@
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
+import * as Facebook from 'expo-facebook';
+import * as Google from "expo-google-app-auth";
+
+const IOS_CLIENT_ID =
+  "your-ios-client-id";
+const ANDROID_CLIENT_ID =
+  "858469554639-3cu7s16hphtfkeioidb7l2o7s0kohtkl.apps.googleusercontent.com";
 
 import {
   Image,
@@ -17,6 +25,55 @@ import {
 import { MonoText } from '../components/StyledText';
 
 export default function HomeScreen() {
+
+  
+    signInWithGoogle = async () => {
+    try {
+      const result = await Google.logInAsync({
+        iosClientId: IOS_CLIENT_ID,
+        androidClientId: ANDROID_CLIENT_ID,
+        scopes: ["profile", "email"]
+      });
+
+      if (result.type === "success") {
+        console.log("LoginScreen.js.js 21 | ", result.user.givenName);
+        this.props.navigation.navigate("Profile", {
+          username: result.user.givenName
+        }); //after Google login redirect to Profile
+        return result.accessToken;
+      } else {
+        return { cancelled: true };
+      }
+    } catch (e) {
+      console.log('LoginScreen.js.js 30 | Error with login', e);
+      return { error: true };
+    }
+  };
+  FBlogIn = async () => {
+    try {
+      const {
+        type,
+        token,
+        expires,
+        permissions,
+        declinedPermissions
+      } = await Facebook.logInWithReadPermissionsAsync("645395475996306", {
+        permissions: ["public_profile"]
+      });
+
+      if (type === "success") {
+        // Get the user's name using Facebook's Graph API
+    const response = await fetch(
+      `https://graph.facebook.com/me?access_token=${token}`
+    );
+    Alert.alert("Logged in!", `Hi ${(await response.json()).name}!`);
+  } else {
+     alert(`Facebook Login Error: Cancelled`);
+  }
+} catch ({ message }) {
+  alert(`Facebook Login Error: ${message}`);
+}
+};
   return (
     <View style={styles.container}>
       <ScrollView
@@ -36,8 +93,31 @@ export default function HomeScreen() {
         <View style={styles.getStartedContainer}>
           <DevelopmentModeNotice />
  <View>
-        <Text>Home Screen</Text>
-       
+        <Text></Text>
+        <View style={styles.container}>
+          <Button title="Login with Google" onPress={this.signInWithGoogle} />
+          <Text style={{fontWeight: 'bold', color: '#fff', fontSize:30, justifyContent:'center', marginVertical:10}}>
+           Login With Facebook
+
+    </Text>
+
+        <TouchableOpacity
+              style={{
+                backgroundColor: "#3f5c9a",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                height: 60,
+                borderColor: "#3f5c9a",
+                borderWidth: 1
+              }}
+              onPress={this.FBlogIn}
+            >
+
+              <FontAwesome name="facebook-f" size={20} color="white" />
+            </TouchableOpacity>
+        </View>
+        
       </View>
           <View
             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
@@ -57,6 +137,7 @@ export default function HomeScreen() {
             </Text>
           </TouchableOpacity>
         </View>
+        
       </ScrollView>
 
       <View style={styles.tabBarInfoContainer}>
