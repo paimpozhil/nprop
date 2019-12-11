@@ -25,7 +25,31 @@ import {
 import { MonoText } from '../components/StyledText';
 
 export default function HomeScreen() {
+FBlogIn = async () => {
+      try {
+        const {
+          type,
+          token,
+          expires,
+          permissions,
+          declinedPermissions
+        } = await Facebook.logInWithReadPermissionsAsync("App_ID", {
+          permissions: ["public_profile"]
+        });
 
+        if (type === "success") {
+          // Get the user's name using Facebook's Graph API
+      const response = await fetch(
+        `https://graph.facebook.com/me?access_token=${token}`
+      );
+      Alert.alert("Logged in!", `Hi ${(await response.json()).name}!`);
+    } else {
+       alert(`Facebook Login Error: Cancelled`);
+    }
+  } catch ({ message }) {
+    alert(`Facebook Login Error: ${message}`);
+  }
+};
   
     signInWithGoogle = async () => {
     try {
@@ -74,7 +98,6 @@ export default function HomeScreen() {
   alert(`Facebook Login Error: ${message}`);
 }
 };
-
   return (
     <View style={styles.container}>
       <ScrollView
@@ -97,6 +120,7 @@ export default function HomeScreen() {
         <Text></Text>
         <View style={styles.container}>
           <Button title="Login with Google" onPress={this.signInWithGoogle} />
+          
           <Text style={{fontWeight: 'bold', color: '#fff', fontSize:30, justifyContent:'center', marginVertical:10}}>
            Login With Facebook
 
@@ -117,6 +141,8 @@ export default function HomeScreen() {
 
               <FontAwesome name="facebook-f" size={20} color="white" />
             </TouchableOpacity>
+
+
         </View>
         
       </View>
