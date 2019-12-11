@@ -18,9 +18,15 @@
     "expo": "^35.0.0",
     "expo-asset": "^7.0.0",
     "expo-constants": "^7.0.0",
+<<<<<<< HEAD
     "expo-facebook": "^7.0.0",
     "expo-font": "^7.0.0",
     "expo-google-app-auth": "^7.0.0",
+=======
+    "expo-facebook": "^8.0.0",
+    "expo-font": "^7.0.0",
+    "expo-google-app-auth": "^8.0.0",
+>>>>>>> eff801557c71cb5553e805db0e035e1dd12cc003
     "expo-web-browser": "^7.0.0",
     "firebase": "^7.2.0",
     "react": "16.8.3",
