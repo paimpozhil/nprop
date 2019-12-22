@@ -15,7 +15,7 @@ function Item({ title }) {
   );
 }
 
-function PropertyDetails(){
+function PropertyDetails(item){
 	const [ loading, setLoading ] = useState(true);
 	const [ propertyDetails, setpropertyDetails ] = useState([]);
 	
