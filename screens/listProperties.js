@@ -15,11 +15,12 @@ function Item({ title }) {
 }
 
 //export default class ListProperties extends Component{
-	function Properties() {
+	function Properties(props) {
 		const [ property, setProperty ] = useState('');
 		const [ loading, setLoading ] = useState(true);
 		const [ properties, setProperties ] = useState([]);
 		const ref = db.collection('Properties');
+		
 	async function addProperty(){
 		await ref.doc(property).set({
         name: property
@@ -48,9 +49,10 @@ function Item({ title }) {
   }, []);
   
 	goToNextScreen = (item) => {
-		//this.props.navigation.navigate('PropertyDetails', {
-		//itemId: item,
-		// }); 
+		console.log(props,item);
+		props.navigation.navigate('Links', {
+		itemId: item,
+		 }); 
     }
   return ( 
     <> 
